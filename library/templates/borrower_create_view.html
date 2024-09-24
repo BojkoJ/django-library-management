@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Vytvořit nového vypůjčovatele{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-5 mb-4">Vytvořit nového vypůjčovatele</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_name">Jméno vypůjčovatele:</label>
+                                <input type="text" name="name" class="form-control" id="id_name" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Vytvořit vypůjčovatele</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

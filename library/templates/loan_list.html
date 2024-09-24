@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Seznam vypůjček{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-5 mb-4">Seznam vypůjček</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for loan in loans %}
+                                <li class="list-group-item">
+                                    <strong>Vypůčka</strong>
+                                    <strong><a href="{% url 'loan_detail' loan.id %}">{{ loan.book.title }}</a></strong> - {{ loan.borrower.name }} - {{ loan.date_borrowed }}
+                                    {% if loan.return_date < today %}
+                                        <span class="text-success"> (Vráceno)</span>
+                                    {% else %}
+                                        <span class="text-warning"> (Čeká na vrácení)</span>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <a href="{% url 'loan_create_view' %}" class="btn btn-primary mt-3">Přidat vypůjčku</a> <!-- Tlačítko pro přesměrování -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

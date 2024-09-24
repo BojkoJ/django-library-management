@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Detail půjčovatele - {{ borrower.name }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h1 class="mb-4">Detail půjčovatele - {{ borrower.name }}</h1>
+            </div>
+        </div>
+
+        <!-- Log vypůjčených knih -->
+        <script>
+            console.log("Seznam vypůjčených knih:");
+            {% for loan in loans %}
+                console.log("Název knihy: {{ loan.book.title }}; Autor: {{ loan.book.author.name }}");
+            {% endfor %}
+        </script>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Informace o půjčovateli</h2>
+                        <p><strong>Jméno:</strong> {{ borrower.name }}</p>
+                        <p><strong>Počet vypůjčených knih:</strong> {{ borrower.loan_set.count }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Seznam vypůjčených knih</h2>
+                        <ul class="list-group">
+                            {% for borrowed_book in borrowed_books %}
+                                <li class="list-group-item">{{ borrowed_book.title }} - {{ borrowed_book.author.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

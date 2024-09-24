@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Seznam vydavatelství{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-5 mb-4">Seznam vydavatelství</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for publisher in publishers %}
+                                <li class="list-group-item">
+                                    <strong><a href="{% url 'publisher_detail' publisher.id %}">{{ publisher.name }}</a></strong> - {{ publisher.num_books }} knih
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <a href="{% url 'publisher_create_view' %}" class="btn btn-primary mt-3">Přidat vydavatelství</a> <!-- Tlačítko pro přesměrování -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

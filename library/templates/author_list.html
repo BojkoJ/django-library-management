@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Seznam autorů{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-5 mb-4">Seznam autorů</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for author in authors %}
+                                <li class="list-group-item">
+                                    <strong><a href="{% url 'author_detail' author.id %}">{{ author.name }}</a></strong> - {{ author.birth_date }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <a href="{% url 'author_create_view' %}" class="btn btn-primary mt-3">Přidat autora</a> <!-- Tlačítko pro přesměrování -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

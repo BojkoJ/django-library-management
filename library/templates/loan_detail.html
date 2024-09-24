@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Detail vypůjčky{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-5 mb-4">Detail vypůjčky</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Název knihy: {{ loan.book.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Vypůjčil: {{ loan.borrower.name }}</h6>
+                <p class="card-text">Datum vypůjčení: {{ loan.date_borrowed }}</p>
+                <p class="card-text">Datum vrácení: {{ loan.return_date }}</p>
+                {% if loan.return_date < today %}
+                    <p class="text-success">Stav: Vráceno</p>
+                {% else %}
+                    <p class="text-warning">Stav: Čeká na vrácení</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

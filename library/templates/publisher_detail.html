@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Detail vydavatele - {{ publisher.name }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h1 class="mb-4">Detail vydavatele - {{ publisher.name }}</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Informace o vydavateli</h2>
+                        <p><strong>Název:</strong> {{ publisher.name }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Seznam knih vydavatele</h2>
+                        <ul class="list-group">
+                            {% for book in books %}
+                                <li class="list-group-item">{{ book.title }} - {{ book.author.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

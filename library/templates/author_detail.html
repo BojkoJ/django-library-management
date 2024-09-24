@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Detail autora - {{ author.name }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h1 class="mb-4">Detail autora - {{ author.name }}</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Informace o autorovi</h2>
+                        <p><strong>Jméno:</strong> {{ author.name }}</p>
+                        <p><strong>Datum narození:</strong> {{ author.birth_date }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Seznam knih napsaných autorem</h2>
+                        <ul class="list-group">
+                            {% for book in books %}
+                                <li class="list-group-item">{{ book.title }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Vydavatelství, která vydávají autorovy knihy</h2>
+                        <ul class="list-group">
+                            {% for publisher in publishers %}
+                                <li class="list-group-item">{{ publisher.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

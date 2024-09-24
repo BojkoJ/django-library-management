@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Detail knihy - {{ book.title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h1 class="mb-4">Detail knihy - {{ book.title }}</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Informace o knize</h2>
+                        <p><strong>Název:</strong> {{ book.title }}</p>
+                        <p><strong>Autor:</strong> {{ book.author.name }}</p>
+                        <p><strong>Vydavatelství:</strong> {{ book.publisher.name }}</p>
+                        <p><strong>Žánr:</strong> {{ book.genre.name }}</p>
+                        <p><strong>Publikováno:</strong> {{ book.publication_date }}</p>
+                        <p><strong>Průměrné hodnocení: </strong> 
+                            {% for i in "12345" %}
+                                {% if i|add:0 <= average_rating %}
+                                    <span class="bi bi-star-fill"></span>
+                                {% else %}
+                                    <span class="bi bi-star"></span>
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Recenze</h2>
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            {{ review_form.as_p }}
+                            <input type="hidden" name="book" value="{{ book.id }}">
+
+                            <button type="submit" class="btn btn-primary">Přidat recenzi</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Existující recenze</h2>
+                        <ul class="list-group">
+                            {% for review in reviews %}
+                                <li class="list-group-item">
+                                    <strong>{{ review.reviewer_name }}</strong> - {{ review.rating }} bodů
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
