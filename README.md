@@ -16,5 +16,5 @@ V tomto projektu je užito:
 Chcete-li projekt spustit, je je třeba mít nainstalovaný <b>[Python](https://www.python.org/downloads/)</b> a <b>[Django](https://www.djangoproject.com/download/) Framework</b>:
 
 -   Naklonujte repozitář
--   python ./manage.py runserver v kořenovém adresáři repozitáře
+-   `python ./manage.py runserver` v kořenovém adresáři repozitáře
 -   Aplikace nyní běží na http://127.0.0.1:8000/
